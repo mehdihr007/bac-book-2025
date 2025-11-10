@@ -107,7 +107,7 @@
     <h1>كتاب مواضيع وتصحيحات البكالوريا 2017-2023</h1>
     <p>السعر الترويجي: 1500 دج فقط! اختر خياراتك واطلب الآن.</p>
 
-    <form id="orderForm" action="https://formspree.io/f/your-form-id" method="POST"> <!-- Remplace par ton ID Formspree (gratuit, s'inscrire sur formspree.io) -->
+    <form id="orderForm" action="https://formsubmit.co/ountaja@gmail.com" method="POST">
       <select id="filiere" name="الشعبة" onchange="updateSubCategory()">
         <option value="">اختر الشعبة</option>
         <option value="sci">علوم تجريبية</option>
@@ -128,7 +128,9 @@
         <option value="essential">المواد الأساسية</option>
         <option value="secondary">المواد الثانوية</option>
       </select>
-
+      <input type="hidden" name="_subject" value="طلب جديد - كتاب البكالوريا">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://tonpseudo.github.io/bac-book-2025/merci.html">
       <input type="text" id="name" name="الاسم" placeholder="الاسم الكامل" required>
       <input type="tel" id="phone" name="رقم الهاتف" placeholder="رقم الهاتف" required>
       <select id="wilaya" name="الولاية" onchange="updatePrice()">
