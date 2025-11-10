@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>كتاب مواضيع وتصحيحات البكالوريا 2017-2023</title>
+  <style>
+  :root {
+    --bg: #f8f9fa;
+    --card: #ffffff;
+    --muted: #6c757d;
+    --text: #1e3a8a;
+    --accent: #3b82f6;
+     }
+
+  body {
+    margin: 0;
+    font-family: "Cairo", system-ui, sans-serif;
+    background: #f1f5f9;
+    color: var(--text);
+    padding: 20px;
+    text-align: center;
+  }
+
+  h1 {
+    font-weight: 800;
+    margin: 20px 0;
+    font-size: 1.8rem;
+    color: #1e40af;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--card);
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+  }
+
+  select, input {
+    width: 100%;
+    padding: 16px;
+    margin: 12px 0;
+    border-radius: 12px;
+    background: #ffffff;
+    border: 2px solid #cbd5e1;
+    color: var(--text);
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+
+  select:focus, input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  }
+
+  /* Icône flèche déroulante agrandie */
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%236b7280' viewBox='0 0 20 20'%3e%3cpath d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: left 16px center;
+    background-size: 20px;
+    padding-left: 48px;
+  }
+
+  button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 24px;
+    transition: 0.2s;
+  }
+
+  button:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+  }
+
+  #totalPrice {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #059669;
+    margin: 24px 0;
+    padding: 16px;
+    background: #ecfdf5;
+    border-radius: 12px;
+    border: 2px solid #a7f3d0;
+  }
+
+  #subCategory { display: none; margin-top: 12px; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://i.imgur.com/your-book-image-url.jpg" alt="كتاب البكالوريا" style="width:100%; border-radius:12px; margin-bottom:20px;"> <!-- Remplace par un lien vers ton image uploadée, ex: via Imgur -->
+    <h1>كتاب مواضيع وتصحيحات البكالوريا 2017-2023</h1>
+    <p>السعر الترويجي: 1500 دج فقط! اختر خياراتك واطلب الآن.</p>
+
+    <form id="orderForm" action="https://formspree.io/f/your-form-id" method="POST"> <!-- Remplace par ton ID Formspree (gratuit, s'inscrire sur formspree.io) -->
+      <select id="filiere" name="الشعبة" onchange="updateSubCategory()">
+        <option value="">اختر الشعبة</option>
+        <option value="sci">علوم تجريبية</option>
+        <option value="math">رياضيات</option>
+        <option value="tech">تقني رياضي</option>
+        <option value="mgmt">تسيير واقتصاد</option>
+        <option value="lit">آداب وفلسفة</option>
+        <option value="lang">لغات أجنبية</option>
+      </select>
+
+      <select id="subCategory" name="التخصص" onchange="updatePrice()">
+        <option value="">اختر التخصص</option>
+        <!-- Options dynamiques pour tech et lang -->
+      </select>
+
+      <select id="option" name="نوع المواد" onchange="updatePrice()">
+        <option value="">اختر نوع المواد</option>
+        <option value="essential">المواد الأساسية</option>
+        <option value="secondary">المواد الثانوية</option>
+      </select>
+
+      <input type="text" id="name" name="الاسم" placeholder="الاسم الكامل" required>
+      <input type="tel" id="phone" name="رقم الهاتف" placeholder="رقم الهاتف" required>
+      <select id="wilaya" name="الولاية" onchange="updatePrice()">
+        <option value="">اختر الولاية</option>
+        <option value="أدرار">أدرار</option>
+        <option value="الشلف">الشلف</option>
+        <option value="الأغواط">الأغواط</option>
+        <!-- Ajoute toutes les wilayas de ton DOCX ici -->
+        <option value="أم البواقي">أم البواقي</option>
+        <option value="باتنة">باتنة</option>
+        <option value="بجاية">بجاية</option>
+        <option value="بسكرة">بسكرة</option>
+        <option value="بشار">بشار</option>
+        <option value="البليدة">البليدة</option>
+        <option value="البويرة">البويرة</option>
+        <option value="تمنراست">تمنراست</option>
+        <option value="تبسة">تبسة</option>
+        <option value="تلمسان">تلمسان</option>
+        <option value="تيارت">تيارت</option>
+        <option value="تيزي وزو">تيزي وزو</option>
+        <option value="الجزائر">الجزائر</option>
+        <option value="الجلفة">الجلفة</option>
+        <option value="جيجل">جيجل</option>
+        <option value="سطيف">سطيف</option>
+        <option value="سعيدة">سعيدة</option>
+        <option value="سكيكدة">سكيكدة</option>
+        <option value="سيدي بلعباس">سيدي بلعباس</option>
+        <option value="عنابة">عنابة</option>
+        <option value="قالمة">قالمة</option>
+        <option value="قسنطينة">قسنطينة</option>
+        <option value="المدية">المدية</option>
+        <option value="مستغانم">مستغانم</option>
+        <option value="المسيلة">المسيلة</option>
+        <option value="معسكر">معسكر</option>
+        <option value="ورقلة">ورقلة</option>
+        <option value="وهران">وهران</option>
+        <option value="البيض">البيض</option>
+        <option value="إيليزي">إيليزي</option>
+        <option value="برج بوعريريج">برج بوعريريج</option>
+        <option value="بومرداس">بومرداس</option>
+        <option value="الطارف">الطارف</option>
+        <option value="تندوف">تندوف</option>
+        <option value="تيسمسيلت">تيسمسيلت</option>
+        <option value="الوادي">الوادي</option>
+        <option value="خنشلة">خنشلة</option>
+        <option value="سوق أهراس">سوق أهراس</option>
+        <option value="تيبازة">تيبازة</option>
+        <option value="ميلة">ميلة</option>
+        <option value="عين الدفلى">عين الدفلى</option>
+        <option value="النعامة">النعامة</option>
+        <option value="عين تموشنت">عين تموشنت</option>
+        <option value="غرداية">غرداية</option>
+        <option value="غليزان">غليزان</option>
+        <option value="تيميمون">تيميمون</option>
+        <option value="برج باجي مختار">برج باجي مختار</option>
+        <option value="أولاد جلال">أولاد جلال</option>
+        <option value="بني عباس">بني عباس</option>
+        <option value="عين صالح">عين صالح</option>
+        <option value="عين قزام">عين قزام</option>
+        <option value="توقرت">توقرت</option>
+        <option value="جانت">جانت</option>
+        <option value="المغير">المغير</option>
+        <option value="المنيعة">المنيعة</option>
+      </select>
+
+      <input type="text" id="baladia" name="البلدية" placeholder="البلدية (اختياري)">
+
+      <select id="delivery" name="نوع التوصيل" onchange="updatePrice()">
+        <option value="">اختر نوع التوصيل</option>
+        <option value="domicile">إلى المنزل</option>
+        <option value="bureau">إلى مكتب ZR Express</option>
+      </select>
+
+      <div id="totalPrice">المجموع الكلي: 1500 دج (سيتم تحديثه)</div>
+
+      <button type="submit">اطلب الآن</button>
+    </form>
+  </div>
+
+  <script>
+    const deliveryPrices = {
+      'أدرار': { domicile: 1400, bureau: 970 },
+      'الشلف': { domicile: 850, bureau: 520 },
+      'الأغواط': { domicile: 950, bureau: 620 },
+      // Ajoute tous les prix de ton DOCX ici de la même manière
+      'أم البواقي': { domicile: 850, bureau: 520 },
+      'باتنة': { domicile: 900, bureau: 520 },
+      'بجاية': { domicile: 800, bureau: 520 },
+      'بسكرة': { domicile: 950, bureau: 620 },
+      'بشار': { domicile: 1100, bureau: 720 },
+      'البليدة': { domicile: 600, bureau: 470 },
+      'البويرة': { domicile: 700, bureau: 520 },
+      'تمنراست': { domicile: 1600, bureau: 1120 },
+      'تبسة': { domicile: 900, bureau: 570 },
+      'تلمسان': { domicile: 900, bureau: 570 },
+      'تيارت': { domicile: 850, bureau: 520 },
+      'تيزي وزو': { domicile: 750, bureau: 520 },
+      'الجزائر': { domicile: 500, bureau: 370 },
+      'الجلفة': { domicile: 950, bureau: 570 },
+      'جيجل': { domicile: 900, bureau: 520 },
+      'سطيف': { domicile: 800, bureau: 520 },
+      'سعيدة': { domicile: 900, bureau: 570 },
+      'سكيكدة': { domicile: 900, bureau: 520 },
+      'سيدي بلعباس': { domicile: 900, bureau: 520 },
+      'عنابة': { domicile: 850, bureau: 520 },
+      'قالمة': { domicile: 900, bureau: 520 },
+      'قسنطينة': { domicile: 800, bureau: 520 },
+      'المدية': { domicile: 800, bureau: 520 },
+      'مستغانم': { domicile: 900, bureau: 520 },
+      'المسيلة': { domicile: 850, bureau: 570 },
+      'معسكر': { domicile: 900, bureau: 520 },
+      'ورقلة': { domicile: 950, bureau: 670 },
+      'وهران': { domicile: 800, bureau: 520 },
+      'البيض': { domicile: 1100, bureau: 670 },
+      'إيليزي': { domicile: 0, bureau: 0 },
+      'برج بوعريريج': { domicile: 800, bureau: 520 },
+      'بومرداس': { domicile: 700, bureau: 520 },
+      'الطارف': { domicile: 850, bureau: 520 },
+      'تندوف': { domicile: 0, bureau: 0 },
+      'تيسمسيلت': { domicile: 900, bureau: 520 },
+      'الوادي': { domicile: 950, bureau: 670 },
+      'خنشلة': { domicile: 900, bureau: 0 },
+      'سوق أهراس': { domicile: 900, bureau: 520 },
+      'تيبازة': { domicile: 700, bureau: 520 },
+      'ميلة': { domicile: 900, bureau: 520 },
+      'عين الدفلى': { domicile: 900, bureau: 520 },
+      'النعامة': { domicile: 1100, bureau: 670 },
+      'عين تموشنت': { domicile: 900, bureau: 520 },
+      'غرداية': { domicile: 950, bureau: 620 },
+      'غليزان': { domicile: 900, bureau: 520 },
+      'تيميمون': { domicile: 1400, bureau: 0 },
+      'برج باجي مختار': { domicile: 0, bureau: 0 },
+      'أولاد جلال': { domicile: 950, bureau: 620 },
+      'بني عباس': { domicile: 1100, bureau: 970 },
+      'عين صالح': { domicile: 1600, bureau: 0 },
+      'عين قزام': { domicile: 1600, bureau: 0 },
+      'توقرت': { domicile: 950, bureau: 670 },
+      'جانت': { domicile: 0, bureau: 0 },
+      'المغير': { domicile: 950, bureau: 0 },
+      'المنيعة': { domicile: 1000, bureau: 0 }
+    };
+
+    const subCategories = {
+      'tech': ['هندسة ميكانيكية', 'هندسة مدنية', 'هندسة الطرائق', 'هندسة كهربائية'],
+      'lang': ['إسبانية', 'ألمانية', 'إيطالية']
+    };
+
+    function updateSubCategory() {
+      const filiere = document.getElementById('filiere').value;
+      const subSelect = document.getElementById('subCategory');
+      subSelect.innerHTML = '<option value="">اختر التخصص</option>';
+      subSelect.style.display = 'none';
+
+      if (subCategories[filiere]) {
+        subSelect.style.display = 'block';
+        subCategories[filiere].forEach(sub => {
+          subSelect.innerHTML += `<option value="${sub}">${sub}</option>`;
+        });
+      }
+      updatePrice();
+    }
+
+    function updatePrice() {
+      const wilaya = document.getElementById('wilaya').value;
+      const delivery = document.getElementById('delivery').value;
+      const basePrice = 1500;
+      let shipping = 0;
+
+      if (wilaya && delivery && deliveryPrices[wilaya]) {
+        shipping = deliveryPrices[wilaya][delivery] || 0;
+      }
+
+      const total = basePrice + shipping;
+      document.getElementById('totalPrice').innerText = `المجموع الكلي: ${total} دج`;
+    }
+  </script>
+</body>
+</html>
