@@ -332,8 +332,49 @@
       document.getElementById('totalPrice').innerText = `المجموع الكلي: ${total} دج`;
     }
   </script>
+  <script>
+  // Soumission AJAX pour Netlify Forms (fix 404 + instantané)
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form[name="commande-bac"]');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Empêche la redirection par défaut (bye-bye 404)
+
+        const formData = new FormData(form);
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerText;
+        submitBtn.innerText = 'جاري الإرسال...'; // Loading
+        submitBtn.disabled = true;
+
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString()
+        })
+        .then(response => {
+          if (response.ok) {
+            // Succès : Affiche message + redirige vers merci.html (optionnel)
+            form.innerHTML = '<div style="text-align:center; padding:20px; background:#ecfdf5; color:#166534; border-radius:12px; font-size:1.2rem; margin:20px 0;"><h2>✅ تم استلام طلبك بنجاح!</h2><p>سنتصل بك خلال 24 ساعة لتأكيد الشحن. شكراً لثقتك في Bouda Copy Express!</p></div>';
+            // Optionnel : setTimeout(() => { window.location.href = '/merci.html'; }, 3000); // Redirige après 3s
+          } else {
+            alert('خطأ في الإرسال. يرجى المحاولة مرة أخرى.');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('خطأ في الإرسال. يرجى المحاولة مرة أخرى.');
+        })
+        .finally(() => {
+          submitBtn.innerText = originalText;
+          submitBtn.disabled = false;
+        });
+      });
+    }
+  });
+</script>
 </body>
 
 </html>
+
 
 
