@@ -106,109 +106,133 @@
     <img src="https://i.imgur.com/your-book-image-url.jpg" alt="كتاب البكالوريا" style="width:100%; border-radius:12px; margin-bottom:20px;"> <!-- Remplace par un lien vers ton image uploadée, ex: via Imgur -->
     <h1>كتاب مواضيع وتصحيحات البكالوريا 2017-2023</h1>
     <p>السعر الترويجي: 1500 دج فقط! اختر خياراتك واطلب الآن.</p>
-    <form name="commande-bac" netlify netlify-honeypot="_gotcha" data-netlify="true">
-    <form id="orderForm" action="https://formsubmit.co/ountaja@gmail.com" method="POST">
-      <select id="filiere" name="الشعبة" onchange="updateSubCategory()">
-        <option value="">اختر الشعبة</option>
-        <option value="sci">علوم تجريبية</option>
-        <option value="math">رياضيات</option>
-        <option value="tech">تقني رياضي</option>
-        <option value="mgmt">تسيير واقتصاد</option>
-        <option value="lit">آداب وفلسفة</option>
-        <option value="lang">لغات أجنبية</option>
-      </select>
+   <form name="commande-bac" netlify netlify-honeypot="_gotcha" data-netlify="true" method="POST">
+  <!-- Anti-bot invisible (honeypot) -->
+  <input type="hidden" name="_gotcha" style="display:none !important">
 
-      <select id="subCategory" name="التخصص" onchange="updatePrice()">
-        <option value="">اختر التخصص</option>
-        <!-- Options dynamiques pour tech et lang -->
-      </select>
+  <!-- Tes champs existants -->
+  <div class="form-group">
+    <label>الشعبة</label>
+    <select id="filiere" name="الشعبة" onchange="updateSubCategory()" required>
+      <option value="">اختر الشعبة</option>
+      <option value="sci">علوم تجريبية</option>
+      <option value="math">رياضيات</option>
+      <option value="tech">تقني رياضي</option>
+      <option value="mgmt">تسيير واقتصاد</option>
+      <option value="lit">آداب وفلسفة</option>
+      <option value="lang">لغات أجنبية</option>
+    </select>
+  </div>
 
-      <select id="option" name="نوع المواد" onchange="updatePrice()">
-        <option value="">اختر نوع المواد</option>
-        <option value="essential">المواد الأساسية</option>
-        <option value="secondary">المواد الثانوية</option>
-      </select>
-      <input type="hidden" name="_gotcha" style="display:none !important">
-      <input type="hidden" name="_subject" value="طلب جديد - كتاب البكالوريا">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://mehdihr007.github.io/bac-book-2025/merci.html">
-      <input type="text" id="name" name="الاسم" placeholder="الاسم الكامل" required>
-      <input type="tel" id="phone" name="رقم الهاتف" placeholder="رقم الهاتف" required>
-      <select id="wilaya" name="الولاية" onchange="updatePrice()">
-        <option value="">اختر الولاية</option>
-        <option value="أدرار">أدرار</option>
-        <option value="الشلف">الشلف</option>
-        <option value="الأغواط">الأغواط</option>
-        <!-- Ajoute toutes les wilayas de ton DOCX ici -->
-        <option value="أم البواقي">أم البواقي</option>
-        <option value="باتنة">باتنة</option>
-        <option value="بجاية">بجاية</option>
-        <option value="بسكرة">بسكرة</option>
-        <option value="بشار">بشار</option>
-        <option value="البليدة">البليدة</option>
-        <option value="البويرة">البويرة</option>
-        <option value="تمنراست">تمنراست</option>
-        <option value="تبسة">تبسة</option>
-        <option value="تلمسان">تلمسان</option>
-        <option value="تيارت">تيارت</option>
-        <option value="تيزي وزو">تيزي وزو</option>
-        <option value="الجزائر">الجزائر</option>
-        <option value="الجلفة">الجلفة</option>
-        <option value="جيجل">جيجل</option>
-        <option value="سطيف">سطيف</option>
-        <option value="سعيدة">سعيدة</option>
-        <option value="سكيكدة">سكيكدة</option>
-        <option value="سيدي بلعباس">سيدي بلعباس</option>
-        <option value="عنابة">عنابة</option>
-        <option value="قالمة">قالمة</option>
-        <option value="قسنطينة">قسنطينة</option>
-        <option value="المدية">المدية</option>
-        <option value="مستغانم">مستغانم</option>
-        <option value="المسيلة">المسيلة</option>
-        <option value="معسكر">معسكر</option>
-        <option value="ورقلة">ورقلة</option>
-        <option value="وهران">وهران</option>
-        <option value="البيض">البيض</option>
-        <option value="إيليزي">إيليزي</option>
-        <option value="برج بوعريريج">برج بوعريريج</option>
-        <option value="بومرداس">بومرداس</option>
-        <option value="الطارف">الطارف</option>
-        <option value="تندوف">تندوف</option>
-        <option value="تيسمسيلت">تيسمسيلت</option>
-        <option value="الوادي">الوادي</option>
-        <option value="خنشلة">خنشلة</option>
-        <option value="سوق أهراس">سوق أهراس</option>
-        <option value="تيبازة">تيبازة</option>
-        <option value="ميلة">ميلة</option>
-        <option value="عين الدفلى">عين الدفلى</option>
-        <option value="النعامة">النعامة</option>
-        <option value="عين تموشنت">عين تموشنت</option>
-        <option value="غرداية">غرداية</option>
-        <option value="غليزان">غليزان</option>
-        <option value="تيميمون">تيميمون</option>
-        <option value="برج باجي مختار">برج باجي مختار</option>
-        <option value="أولاد جلال">أولاد جلال</option>
-        <option value="بني عباس">بني عباس</option>
-        <option value="عين صالح">عين صالح</option>
-        <option value="عين قزام">عين قزام</option>
-        <option value="توقرت">توقرت</option>
-        <option value="جانت">جانت</option>
-        <option value="المغير">المغير</option>
-        <option value="المنيعة">المنيعة</option>
-      </select>
+  <div class="form-group" id="subCategory" style="display:none;">
+    <label>التخصص</label>
+    <select name="التخصص" onchange="updatePrice()">
+      <option value="">اختر التخصص</option>
+    </select>
+  </div>
 
-      <input type="text" id="baladia" name="البلدية" placeholder="البلدية (اختياري)">
+  <div class="form-group">
+    <label>نوع المواد</label>
+    <select id="option" name="نوع المواد" onchange="updatePrice()" required>
+      <option value="">اختر نوع المواد</option>
+      <option value="essential">المواد الأساسية</option>
+      <option value="secondary">المواد الثانوية</option>
+    </select>
+  </div>
 
-      <select id="delivery" name="نوع التوصيل" onchange="updatePrice()">
-        <option value="">اختر نوع التوصيل</option>
-        <option value="domicile">إلى المنزل</option>
-        <option value="bureau">إلى مكتب ZR Express</option>
-      </select>
+  <div class="form-group">
+    <label>الاسم الكامل</label>
+    <input type="text" name="الاسم" required>
+  </div>
 
-      <div id="totalPrice">المجموع الكلي: 1500 دج (سيتم تحديثه)</div>
+  <div class="form-group">
+    <label>رقم الهاتف</label>
+    <input type="tel" name="رقم الهاتف" required>
+  </div>
 
-      <button type="submit">اطلب الآن</button>
-    </form>
+  <div class="form-group">
+    <label>الولاية</label>
+    <select id="wilaya" name="الولاية" onchange="updatePrice()" required>
+      <option value="">اختر الولاية</option>
+      <option value="أدرار">أدرار</option>
+      <option value="الشلف">الشلف</option>
+      <option value="الأغواط">الأغواط</option>
+      <option value="أم البواقي">أم البواقي</option>
+      <option value="باتنة">باتنة</option>
+      <option value="بجاية">بجاية</option>
+      <option value="بسكرة">بسكرة</option>
+      <option value="بشار">بشار</option>
+      <option value="البليدة">البليدة</option>
+      <option value="البويرة">البويرة</option>
+      <option value="تمنراست">تمنراست</option>
+      <option value="تبسة">تبسة</option>
+      <option value="تلمسان">تلمسان</option>
+      <option value="تيارت">تيارت</option>
+      <option value="تيزي وزو">تيزي وزو</option>
+      <option value="الجزائر">الجزائر</option>
+      <option value="الجلفة">الجلفة</option>
+      <option value="جيجل">جيجل</option>
+      <option value="سطيف">سطيف</option>
+      <option value="سعيدة">سعيدة</option>
+      <option value="سكيكدة">سكيكدة</option>
+      <option value="سيدي بلعباس">سيدي بلعباس</option>
+      <option value="عنابة">عنابة</option>
+      <option value="قالمة">قالمة</option>
+      <option value="قسنطينة">قسنطينة</option>
+      <option value="المدية">المدية</option>
+      <option value="مستغانم">مستغانم</option>
+      <option value="المسيلة">المسيلة</option>
+      <option value="معسكر">معسكر</option>
+      <option value="ورقلة">ورقلة</option>
+      <option value="وهران">وهران</option>
+      <option value="البيض">البيض</option>
+      <option value="برج بوعريريج">برج بوعريريج</option>
+      <option value="بومرداس">بومرداس</option>
+      <option value="الطارف">الطارف</option>
+      <option value="تيسمسيلت">تيسمسيلت</option>
+      <option value="الوادي">الوادي</option>
+      <option value="خنشلة">خنشلة</option>
+      <option value="سوق أهراس">سوق أهراس</option>
+      <option value="تيبازة">تيبازة</option>
+      <option value="ميلة">ميلة</option>
+      <option value="عين الدفلى">عين الدفلى</option>
+      <option value="النعامة">النعامة</option>
+      <option value="عين تموشنت">عين تموشنت</option>
+      <option value="غرداية">غرداية</option>
+      <option value="غليزان">غليزان</option>
+      <option value="تيميمون">تيميمون</option>
+      <option value="أولاد جلال">أولاد جلال</option>
+      <option value="بني عباس">بني عباس</option>
+      <option value="عين صالح">عين صالح</option>
+      <option value="عين قزام">عين قزام</option>
+      <option value="توقرت">توقرت</option>
+      <option value="المغير">المغير</option>
+      <option value="المنيعة">المنيعة</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>البلدية (اختياري)</label>
+    <input type="text" name="البلدية">
+  </div>
+
+  <div class="form-group">
+    <label>نوع التوصيل</label>
+    <select id="delivery" name="نوع التوصيل" onchange="updatePrice()" required>
+      <option value="">اختر نوع التوصيل</option>
+      <option value="domicile">إلى المنزل</option>
+      <option value="bureau">إلى مكتب ZR Express</option>
+    </select>
+  </div>
+
+  <div id="totalPrice" style="background:#ecfdf5;color:#166534;padding:16px;border-radius:12px;font-weight:700;text-align:center;margin:20px 0;border:2px solid #a7f3d0;">
+    المجموع الكلي: 1500 دج
+  </div>
+
+  <button type="submit" style="background:linear-gradient(to right,#3b82f6,#2563eb);color:white;padding:16px;border-radius:12px;font-size:1.2rem;font-weight:700;width:100%;border:none;cursor:pointer;box-shadow:0 6px 20px rgba(59,130,246,0.3);">
+    اطلب الآن
+  </button>
+</form>
   </div>
 
   <script>
@@ -311,4 +335,5 @@
 </body>
 
 </html>
+
 
