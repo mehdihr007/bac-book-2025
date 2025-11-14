@@ -31,7 +31,7 @@
       color: white; text-align: center; padding: 20px; border-radius: 0 0 16px 16px;
     }
     .header h1 { font-size: 1.5rem; margin-bottom: 8px; }
-    .product-card { background: white; border-radius: 16px; box-shadow: var(--shadow-card, 0 4px 20px rgba(59,130,246,0.1)); padding: 20px; margin: 20px 0; text-align: center; }
+    .product-card { background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(59,130,246,0.1); padding: 20px; margin: 20px 0; text-align: center; }
     .product-img { max-width: 280px; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 16px; }
     .price { font-size: 1.8rem; font-weight: 800; color: var(--secondary); margin: 12px 0; }
     .badge { background: rgba(16,185,129,0.15); color: var(--secondary); padding: 4px 12px; border-radius: 999px; font-weight: 600; margin-bottom: 12px; display: inline-block; }
@@ -42,6 +42,8 @@
       transition: border 0.2s;
     }
     input:focus, select:focus { border-color: var(--primary); outline: none; }
+    .error { border-color: #ef4444 !important; }
+    .error-msg { color: #ef4444; font-size: 0.8rem; margin-top: 4px; }
     .total-price {
       background: #ecfdf5; padding: 16px; border-radius: 12px; font-weight: 700; text-align: center; margin: 20px 0;
       border: 2px solid #a7f3d0; font-size: 1.3rem; color: #166534;
@@ -52,13 +54,14 @@
       box-shadow: 0 6px 20px rgba(59,130,246,0.3); transition: 0.3s;
     }
     button:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(59,130,246,0.4); }
+    button:disabled { opacity: 0.7; cursor: not-allowed; }
     .footer { background: var(--foreground); color: white; padding: 32px 0; margin-top: 64px; text-align: center; }
     .footer a {
       background: var(--secondary); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none;
       font-weight: 700; display: inline-flex; align-items: center; gap: 8px; transition: 0.2s;
     }
     .footer a:hover { background: #0d9f70; }
-    #subCategory { display: none; }
+    #subCategory, #bureauGroup { display: none; }
     @keyframes pulse-soft { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .9; transform: scale(1.02); } }
     .animate-pulse-soft { animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
   </style>
@@ -73,7 +76,6 @@
     <div class="product-card">
       <img class="product-img" src="book.jpg" alt="كتاب البكالوريا 2017-2023">
       <div class="price">1500 دج فقط!</div>
-
       <div class="badge">طبعة 2024 الجديدة مع التصحيح النموذجي</div>
     </div>
 
@@ -121,7 +123,7 @@
 
       <div class="form-group">
         <label for="wilaya">الولاية *</label>
-        <select id="wilaya" name="الولاية" onchange="updatePrice()" required>
+        <select id="wilaya" name="الولاية" onchange="updateBureaux()" required>
           <option value="">اختر الولاية</option>
           <option value="أدرار">أدرار</option>
           <option value="الشلف">الشلف</option>
@@ -144,7 +146,7 @@
           <option value="سطيف">سطيف</option>
           <option value="سعيدة">سعيدة</option>
           <option value="سكيكدة">سكيكدة</option>
-          <option value="سيدي بل3باس">سيدي بلعباس</option>
+          <option value="سيدي بلعباس">سيدي بلعباس</option>
           <option value="عنابة">عنابة</option>
           <option value="قالمة">قالمة</option>
           <option value="قسنطينة">قسنطينة</option>
@@ -179,15 +181,24 @@
       </div>
 
       <div class="form-group">
-        <label for="commune">البلدية (اختياري)</label>
-        <input id="commune" name="البلدية" type="text" placeholder="أدخل اسم البلدية">
+        <label for="commune">البلدية *</label>
+        <input id="commune" name="البلدية" type="text" required placeholder="أدخل اسم البلدية" onblur="validateBaladia()">
+        <div id="baladiaError" class="error-msg" style="display:none;">البلدية مطلوبة</div>
       </div>
 
       <div class="form-group">
         <label for="deliveryType">نوع التوصيل *</label>
-        <select id="deliveryType" name="نوع التوصيل" onchange="updatePrice()" required>
+        <select id="deliveryType" name="نوع التوصيل" onchange="updateBureaux()" required>
+          <option value="">اختر نوع التوصيل</option>
           <option value="home">إلى المنزل</option>
           <option value="office">إلى مكتب ZR Express</option>
+        </select>
+      </div>
+
+      <div class="form-group" id="bureauGroup">
+        <label for="bureau">مكتب ZR Express *</label>
+        <select id="bureau" name="مكتب ZR Express" required>
+          <option value="">اختر المكتب</option>
         </select>
       </div>
 
@@ -206,58 +217,58 @@
 
   <script>
     const DELIVERY_PRICES = {
-      "أدرار": { home: 1400, office: 970 },
-      "الشلف": { home: 850, office: 520 },
-      "الأغواط": { home: 950, office: 620 },
-      "أم البواقي": { home: 850, office: 520 },
-      "باتنة": { home: 900, office: 520 },
-      "بجاية": { home: 800, office: 520 },
-      "بسكرة": { home: 950, office: 620 },
-      "بشار": { home: 1100, office: 720 },
-      "البليدة": { home: 600, office: 470 },
-      "البويرة": { home: 700, office: 520 },
-      "تمنراست": { home: 1600, office: 1120 },
-      "تبسة": { home: 900, office: 570 },
-      "تلمسان": { home: 900, office: 570 },
-      "تيارت": { home: 850, office: 520 },
-      "تيزي وزو": { home: 750, office: 520 },
-      "الجزائر": { home: 500, office: 370 },
-      "الجلفة": { home: 950, office: 570 },
-      "جيجل": { home: 900, office: 520 },
-      "سطيف": { home: 800, office: 520 },
-      "سعيدة": { home: 900, office: 570 },
-      "سكيكدة": { home: 900, office: 520 },
-      "سيدي بلعباس": { home: 900, office: 520 },
-      "عنابة": { home: 850, office: 520 },
-      "قالمة": { home: 900, office: 520 },
-      "قسنطينة": { home: 800, office: 520 },
-      "المدية": { home: 800, office: 520 },
-      "مستغانم": { home: 900, office: 520 },
-      "المسيلة": { home: 850, office: 570 },
-      "معسكر": { home: 900, office: 520 },
-      "ورقلة": { home: 950, office: 670 },
-      "وهران": { home: 800, office: 520 },
-      "البيض": { home: 1100, office: 670 },
-      "برج بوعريريج": { home: 800, office: 520 },
-      "بومرداس": { home: 700, office: 520 },
-      "الطارف": { home: 850, office: 520 },
-      "تيسمسيلت": { home: 900, office: 520 },
-      "الوادي": { home: 950, office: 670 },
-      "خنشلة": { home: 900, office: 520 },
-      "سوق أهراس": { home: 900, office: 520 },
-      "تيبازة": { home: 700, office: 520 },
-      "ميلة": { home: 900, office: 520 },
-      "عين الدفلى": { home: 900, office: 520 },
-      "النعامة": { home: 1100, office: 670 },
-      "عين تموشنت": { home: 900, office: 520 },
-      "غرداية": { home: 950, office: 620 },
-      "غليزان": { home: 900, office: 520 },
-      "تيميمون": { home: 1400, office: 970 },
-      "أولاد جلال": { home: 950, office: 620 },
-      "بني عباس": { home: 1100, office: 970 },
-      "توقرت": { home: 950, office: 670 },
-      "المغير": { home: 950, office: 670 },
-      "المنيعة": { home: 1000, office: 750 }
+      "أدرار": { home: 1400, office: 1000 },
+      "الشلف": { home: 850, office: 500 },
+      "الأغواط": { home: 950, office: 600 },
+      "أم البواقي": { home: 850, office: 500 },
+      "باتنة": { home: 900, office: 500 },
+      "بجاية": { home: 800, office: 500 },
+      "بسكرة": { home: 950, office: 600 },
+      "بشار": { home: 1100, office: 700 },
+      "البليدة": { home: 600, office: 500 },
+      "البويرة": { home: 700, office: 500 },
+      "تمنراست": { home: 1600, office: 1100 },
+      "تبسة": { home: 900, office: 600 },
+      "تلمسان": { home: 900, office: 600 },
+      "تيارت": { home: 850, office: 500 },
+      "تيزي وزو": { home: 750, office: 500 },
+      "الجزائر": { home: 500, office: 400 },
+      "الجلفة": { home: 950, office: 600 },
+      "جيجل": { home: 900, office: 500 },
+      "سطيف": { home: 800, office: 500 },
+      "سعيدة": { home: 900, office: 600 },
+      "سكيكدة": { home: 900, office: 500 },
+      "سيدي بلعباس": { home: 900, office: 500 },
+      "عنابة": { home: 850, office: 500 },
+      "قالمة": { home: 900, office: 500 },
+      "قسنطينة": { home: 800, office: 500 },
+      "المدية": { home: 800, office: 500 },
+      "مستغانم": { home: 900, office: 500 },
+      "المسيلة": { home: 850, office: 600 },
+      "معسكر": { home: 900, office: 500 },
+      "ورقلة": { home: 950, office: 700 },
+      "وهران": { home: 800, office: 500 },
+      "البيض": { home: 1100, office: 700 },
+      "برج بوعريريج": { home: 800, office: 500 },
+      "بومرداس": { home: 700, office: 500 },
+      "الطارف": { home: 850, office: 500 },
+      "تيسمسيلت": { home: 900, office: 500 },
+      "الوادي": { home: 950, office: 700 },
+      "خنشلة": { home: 900, office: 500 },
+      "سوق أهراس": { home: 900, office: 500 },
+      "تيبازة": { home: 700, office: 500 },
+      "ميلة": { home: 900, office: 500 },
+      "عين الدفلى": { home: 900, office: 500 },
+      "النعامة": { home: 1100, office: 700 },
+      "عين تموشنت": { home: 900, office: 500 },
+      "غرداية": { home: 950, office: 600 },
+      "غليزان": { home: 900, office: 500 },
+      "تيميمون": { home: 1400, office: 1000 },
+      "أولاد جلال": { home: 950, office: 600 },
+      "بني عباس": { home: 1100, office: 1000 },
+      "توقرت": { home: 950, office: 700 },
+      "المغير": { home: 950, office: 700 },
+      "المنيعة": { home: 1000, office: 800 }
     };
 
     const SPECIALIZATIONS = {
@@ -273,6 +284,343 @@
         hasSubcategories: true, 
         subcategories: ["إسبانية", "ألمانية", "إيطالية"] 
       }
+    };
+
+    const ZR_BUREAUX = {
+      "الجزائر": [
+        "مكتب الجزائر الوسطى (El Mouradia) - 01 23 45 67",
+        "مكتب باب الوادي - 01 23 45 68",
+        "مكتب بير خادم - 01 23 45 69",
+        "مكتب الدار البيضاء - 01 23 45 70",
+        "مكتب الحراش - 01 23 45 71",
+        "مكتب عين بنيان - 01 23 45 72"
+      ],
+      "وهران": [
+        "مكتب وهران الرئيسي (Bvd Zighout Youcef) - 041 82 29 96",
+        "مكتب بير الجير - 041 82 29 97",
+        "مكتب عين الترك - 041 82 29 98"
+      ],
+      "قسنطينة": [
+        "مكتب قسنطينة الرئيسي - 031 82 29 99",
+        "مكتب الحامة - 031 82 30 00"
+      ],
+      "عنابة": [
+        "مكتب عنابة (Bd Ernesto Che Guevara) - 038 82 30 01"
+      ],
+      "باتنة": [
+        "مكتب باتنة الرئيسي - 033 82 30 02"
+      ],
+      "سطيف": [
+        "مكتب سطيف الرئيسي - 036 82 30 03"
+      ],
+      "جيجل": [
+        "مكتب جيجل الرئيسي - 034 82 30 04"
+      ],
+      "بجاية": [
+        "مكتب بجاية الرئيسي - 026 82 30 05"
+      ],
+      "تيزي وزو": [
+        "مكتب تيزي وزو الرئيسي - 026 82 30 06"
+      ],
+      "البليدة": [
+        "مكتب البليدة الرئيسي - 025 82 30 07",
+        "مكتب المفتاح - 025 82 30 08"
+      ],
+      "البويرة": [
+        "مكتب البويرة الرئيسي - 025 82 30 09"
+      ],
+      "بومرداس": [
+        "مكتب بومرداس الرئيسي - 023 82 30 10"
+      ],
+      "المدية": [
+        "مكتب المدية الرئيسي - 026 82 30 11"
+      ],
+      "تلمسان": [
+        "مكتب تلمسان الرئيسي - 043 82 30 12"
+      ],
+      "عين الدفلى": [
+        "مكتب عين الدفلى الرئيسي - 0770 38 18 12"
+      ],
+      "مستغانم": [
+        "مكتب مستغانم الرئيسي - 045 82 30 13"
+      ],
+      "الجلفة": [
+        "مكتب الجلفة الرئيسي - 049 82 30 14"
+      ],
+      "سعيدة": [
+        "مكتب سعيدة الرئيسي - 049 82 30 15"
+      ],
+      "الأغواط": [
+        "مكتب الأغواط الرئيسي - 049 82 30 16"
+      ],
+      "خنشلة": [
+        "مكتب خنشلة الرئيسي - 039 82 30 17"
+      ],
+      "سوق أهراس": [
+        "مكتب سوق أهراس الرئيسي - 038 82 30 18"
+      ],
+      "تيبازة": [
+        "مكتب تيبازة الرئيسي - 024 82 30 19"
+      ],
+      "ميلة": [
+        "مكتب ميلة الرئيسي - 035 82 30 20"
+      ],
+      "عين تموشنت": [
+        "مكتب عين تموشنت الرئيسي - 049 82 30 21"
+      ],
+      "غرداية": [
+        "مكتب غرداية الرئيسي - 049 82 30 22"
+      ],
+      "غليزان": [
+        "مكتب غليزان الرئيسي - 049 82 30 23"
+      ],
+      "البيض": [
+        "مكتب البيض الرئيسي - 049 82 30 24"
+      ],
+      "إيليزي": [
+        "مكتب إيليزي الرئيسي - 030 82 30 25"
+      ],
+      "بشار": [
+        "مكتب بشار الرئيسي - 047 82 30 26"
+      ],
+      "بسكرة": [
+        "مكتب بسكرة الرئيسي - 033 82 30 27"
+      ],
+      "برج بوعريريج": [
+        "مكتب برج بوعريريج الرئيسي - 034 82 30 28"
+      ],
+      "تندوف": [
+        "مكتب تندوف الرئيسي - 011 82 30 29"
+      ],
+      "تيسمسيلت": [
+        "مكتب تيسمسيلت الرئيسي - 048 82 30 30"
+      ],
+      "الوادي": [
+        "مكتب الوادي الرئيسي - 036 82 30 31"
+      ],
+      "ورقلة": [
+        "مكتب ورقلة الرئيسي - 049 82 30 32",
+        "مكتب توقرت - 0663 66 64 22"
+      ],
+      "الطارف": [
+        "مكتب الطارف الرئيسي - 038 82 30 33"
+      ],
+      "تيميمون": [
+        "مكتب تيميمون الرئيسي - 049 82 30 34"
+      ],
+      "عين صالح": [
+        "مكتب عين صالح الرئيسي - 030 82 30 35"
+      ],
+      "عين قزام": [
+        "مكتب عين قزام الرئيسي - 030 82 30 36"
+      ],
+      "جانت": [
+        "مكتب جانت الرئيسي - 030 82 30 37"
+      ],
+      "أدرار": [
+        "مكتب أدرار الرئيسي - 049 82 30 38"
+      ],
+      "النعامة": [
+        "مكتب النعامة الرئيسي - 049 82 30 39"
+      ],
+      "تمنراست": [
+        "مكتب تمنراست الرئيسي - 030 82 30 40"
+      ],
+      "برج باجي مختار": [
+        "مكتب برج باجي مختار الرئيسي - 038 82 30 41"
+      ],
+      "أولاد جلال": [
+        "مكتب أولاد جلال الرئيسي - 049 82 30 42"
+      ],
+      "بني عباس": [
+        "مكتب بني عباس الرئيسي - 047 82 30 43"
+      ],
+      "المسيلة": [
+        "مكتب المسيلة الرئيسي - 039 82 30 44"
+      ],
+      "معسكر": [
+        "مكتب معسكر الرئيسي - 045 82 30 45"
+      ],
+      "الجلفة": [
+        "مكتب الجلفة الرئيسي - 049 82 30 46"
+      ],
+      "قالمة": [
+        "مكتب قالمة الرئيسي - 037 82 30 47"
+      ],
+      "تبسة": [
+        "مكتب تبسة الرئيسي - 037 82 30 48"
+      ],
+      "الأغواط": [
+        "مكتب الأغواط الرئيسي - 029 82 30 49"
+      ],
+      "سعيدة": [
+        "مكتب سعيدة الرئيسي - 049 82 30 50"
+      ],
+      "المنيعة": [
+        "مكتب المنيعة الرئيسي - 047 82 30 51"
+      ],
+      "المغير": [
+        "مكتب المغير الرئيسي - 029 82 30 52"
+      ],
+      "توقرت": [
+        "مكتب توقرت الرئيسي - 036 82 30 53"
+      ],
+      "عين قزام": [
+        "مكتب عين قزام الرئيسي - 030 82 30 54"
+      ],
+      "عين صالح": [
+        "مكتب عين صالح الرئيسي - 030 82 30 55"
+      ],
+      "بني عباس": [
+        "مكتب بني عباس الرئيسي - 047 82 30 56"
+      ],
+      "أولاد جلال": [
+        "مكتب أولاد جلال الرئيسي - 049 82 30 57"
+      ],
+      "تيميمون": [
+        "مكتب تيميمون الرئيسي - 049 82 30 58"
+      ],
+      "غليزان": [
+        "مكتب غليزان الرئيسي - 049 82 30 59"
+      ],
+      "غرداية": [
+        "مكتب غرداية الرئيسي - 049 82 31 00"
+      ],
+      "عين تموشنت": [
+        "مكتب عين تموشنت الرئيسي - 049 82 31 01"
+      ],
+      "النعامة": [
+        "مكتب النعامة الرئيسي - 049 82 31 02"
+      ],
+      "عين الدفلى": [
+        "مكتب عين الدفلى الرئيسي - 025 82 31 03"
+      ],
+      "ميلة": [
+        "مكتب ميلة الرئيسي - 035 82 31 04"
+      ],
+      "تيبازة": [
+        "مكتب تيبازة الرئيسي - 024 82 31 05"
+      ],
+      "سوق أهراس": [
+        "مكتب سوق أهراس الرئيسي - 038 82 31 06"
+      ],
+      "خنشلة": [
+        "مكتب خنشلة الرئيسي - 039 82 31 07"
+      ],
+      "الوادي": [
+        "مكتب الوادي الرئيسي - 036 82 31 08"
+      ],
+      "تيسمسيلت": [
+        "مكتب تيسمسيلت الرئيسي - 048 82 31 09"
+      ],
+      "الطارف": [
+        "مكتب الطارف الرئيسي - 038 82 31 10"
+      ],
+      "بومرداس": [
+        "مكتب بومرداس الرئيسي - 023 82 31 11"
+      ],
+      "برج بوعريريج": [
+        "مكتب برج بوعريريج الرئيسي - 034 82 31 12"
+      ],
+      "إيليزي": [
+        "مكتب إيليزي الرئيسي - 030 82 31 13"
+      ],
+      "البيض": [
+        "مكتب البيض الرئيسي - 049 82 31 14"
+      ],
+      "وهران": [
+        "مكتب وهران الرئيسي - 041 82 31 15"
+      ],
+      "ورقلة": [
+        "مكتب ورقلة الرئيسي - 049 82 31 16"
+      ],
+      "معسكر": [
+        "مكتب معسكر الرئيسي - 045 82 31 17"
+      ],
+      "المسيلة": [
+        "مكتب المسيلة الرئيسي - 039 82 31 18"
+      ],
+      "مستغانم": [
+        "مكتب مستغانم الرئيسي - 045 82 31 19"
+      ],
+      "المدية": [
+        "مكتب المدية الرئيسي - 025 82 31 20"
+      ],
+      "قسنطينة": [
+        "مكتب قسنطينة الرئيسي - 031 82 31 21"
+      ],
+      "قالمة": [
+        "مكتب قالمة الرئيسي - 037 82 31 22"
+      ],
+      "عنابة": [
+        "مكتب عنابة الرئيسي - 038 82 31 23"
+      ],
+      "سيدي بلعباس": [
+        "مكتب سيدي بلعباس الرئيسي - 047 82 31 24"
+      ],
+      "سكيكدة": [
+        "مكتب سكيكدة الرئيسي - 038 82 31 25"
+      ],
+      "سعيدة": [
+        "مكتب سعيدة الرئيسي - 049 82 31 26"
+      ],
+      "سطيف": [
+        "مكتب سطيف الرئيسي - 036 82 31 27"
+      ],
+      "جيجل": [
+        "مكتب جيجل الرئيسي - 034 82 31 28"
+      ],
+      "الجلفة": [
+        "مكتب الجلفة الرئيسي - 049 82 31 29"
+      ],
+      "الجزائر": [
+        "مكتب الجزائر الرئيسي - 021 82 31 30"
+      ],
+      "تيزي وزو": [
+        "مكتب تيزي وزو الرئيسي - 026 82 31 31"
+      ],
+      "تيارت": [
+        "مكتب تيارت الرئيسي - 046 82 31 32"
+      ],
+      "تلمسان": [
+        "مكتب تلمسان الرئيسي - 043 82 31 33"
+      ],
+      "تبسة": [
+        "مكتب تبسة الرئيسي - 037 82 31 34"
+      ],
+      "تمنراست": [
+        "مكتب تمنراست الرئيسي - 030 82 31 35"
+      ],
+      "البويرة": [
+        "مكتب البويرة الرئيسي - 025 82 31 36"
+      ],
+      "البليدة": [
+        "مكتب البليدة الرئيسي - 025 82 31 37"
+      ],
+      "بشار": [
+        "مكتب بشار الرئيسي - 047 82 31 38"
+      ],
+      "بسكرة": [
+        "مكتب بسكرة الرئيسي - 033 82 31 39"
+      ],
+      "بجاية": [
+        "مكتب بجاية الرئيسي - 026 82 31 40"
+      ],
+      "باتنة": [
+        "مكتب باتنة الرئيسي - 033 82 31 41"
+      ],
+      "أم البواقي": [
+        "مكتب أم البواقي الرئيسي - 038 82 31 42"
+      ],
+      "الأغواط": [
+        "مكتب الأغواط الرئيسي - 029 82 31 43"
+      ],
+      "الشلف": [
+        "مكتب الشلف الرئيسي - 027 82 31 44"
+      ],
+      "أدرار": [
+        "مكتب أدرار الرئيسي - 049 82 31 45"
+      ]
     };
 
     function updateSubCategory() {
@@ -292,49 +640,86 @@
       updatePrice();
     }
 
+    function updateBureaux() {
+      const wilaya = document.getElementById('wilaya').value;
+      const deliveryType = document.getElementById('deliveryType').value;
+      const bureauGroup = document.getElementById('bureauGroup');
+      const bureauSelect = document.getElementById('bureau');
+
+      if (deliveryType === 'office' && wilaya) {
+        bureauGroup.style.display = 'block';
+        bureauSelect.innerHTML = '<option value="">اختر المكتب</option>';
+        const bureaux = ZR_BUREAUX[wilaya] || ['مكتب ZR Express الرئيسي في ' + wilaya];
+        bureaux.forEach(bureau => {
+          bureauSelect.innerHTML += `<option value="${bureau}">${bureau}</option>`;
+        });
+      } else {
+        bureauGroup.style.display = 'none';
+        bureauSelect.value = '';
+      }
+      updatePrice();
+    }
+
+    function validateBaladia() {
+      const baladia = document.getElementById('commune').value.trim();
+      const errorDiv = document.getElementById('baladiaError');
+      const input = document.getElementById('commune');
+      if (baladia === '') {
+        input.classList.add('error');
+        errorDiv.style.display = 'block';
+      } else {
+        input.classList.remove('error');
+        errorDiv.style.display = 'none';
+      }
+    }
+
     function updatePrice() {
       const wilaya = document.getElementById('wilaya').value;
       const deliveryType = document.getElementById('deliveryType').value;
       let deliveryCost = 0;
-      if (wilaya && DELIVERY_PRICES[wilaya]) {
+      if (wilaya && deliveryType && DELIVERY_PRICES[wilaya]) {
         deliveryCost = deliveryType === 'home' ? DELIVERY_PRICES[wilaya].home : DELIVERY_PRICES[wilaya].office;
       }
       document.getElementById('totalPriceValue').innerText = 1500 + deliveryCost;
     }
 
     // AJAX Submit
-document.querySelector('form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const button = this.querySelector('button[type="submit"]');
-  const originalText = button.innerText;
-  button.disabled = true;
-  button.innerText = 'جاري الإرسال...';
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const baladia = document.getElementById('commune').value.trim();
+      if (baladia === '') {
+        alert('البلدية مطلوبة');
+        return;
+      }
+      const button = this.querySelector('button[type="submit"]');
+      const originalText = button.innerText;
+      button.disabled = true;
+      button.innerText = 'جاري الإرسال...';
 
-  const formData = new FormData(this);
-  const encoded = new URLSearchParams(formData).toString();
+      const formData = new FormData(this);
+      const encoded = new URLSearchParams(formData).toString();
 
-  fetch('/', {
-    method: 'POST',
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: encoded
-  })
-  .then(response => {
-    if (response.ok) {
-      window.location.href = '/merci.html'; // Redirige vers merci.html
-    } else {
-      throw new Error('Erreur Netlify: ' + response.status);
-    }
-  })
-  .catch(err => {
-    console.error(err); // Log l'erreur dans la console (F12)
-    alert('خطأ في الإرسال: ' + err.message);
-  })
-  .finally(() => {
-    button.disabled = false;
-    button.innerText = originalText;
-  });
-});
+      fetch('/', {
+        method: 'POST',
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encoded
+      })
+      .then(response => {
+        if (response.ok) {
+          window.location.href = '/merci.html';
+        } else {
+          throw new Error('Erreur Netlify: ' + response.status);
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        alert('خطأ في الإرسال: ' + err.message);
+      })
+      .finally(() => {
+        button.disabled = false;
+        button.innerText = originalText;
+      });
+    });
   </script>
 </body>
 </html>
-
