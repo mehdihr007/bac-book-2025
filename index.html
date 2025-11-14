@@ -3,315 +3,288 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>كتاب مواضيع وتصحيحات البكالوريا 2017-2023</title>
+  <title>كتاب البكالوريا 2017-2023 - 1500 دج فقط - Bouda Copy Express</title>
+  <meta name="description" content="كتاب مواضيع وتصحيحات البكالوريا من 2017 إلى 2023 مع التصحيح النموذجي. السعر 1500 دج فقط مع توصيل سريع.">
+  <meta property="og:title" content="كتاب البكالوريا - Bouda Copy Express">
+  <meta property="og:description" content="طبعة 2024 الجديدة ب 1500 دج فقط!">
+  <meta property="og:image" content="book.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-  :root {
-    --bg: #f8f9fa;
-    --card: #ffffff;
-    --muted: #6c757d;
-    --text: #1e3a8a;
-    --accent: #3b82f6;
-     }
-
-  body {
-    margin: 0;
-    font-family: "Cairo", system-ui, sans-serif;
-    background: #f1f5f9;
-    color: var(--text);
-    padding: 20px;
-    text-align: center;
-  }
-
-  h1 {
-    font-weight: 800;
-    margin: 20px 0;
-    font-size: 1.8rem;
-    color: #1e40af;
-  }
-
-  .container {
-    max-width: 600px;
-    margin: 0 auto;
-    background: var(--card);
-    border: 1px solid #e2e8f0;
-    border-radius: 20px;
-    padding: 24px;
-    box-shadow: 0 10px 25px rgba(0,0,0,.08);
-  }
-
-  select, input {
-    width: 100%;
-    padding: 16px;
-    margin: 12px 0;
-    border-radius: 12px;
-    background: #ffffff;
-    border: 2px solid #cbd5e1;
-    color: var(--text);
-    font-size: 1.1rem;
-    font-weight: 600;
-    transition: all 0.2s;
-  }
-
-  select:focus, input:focus {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-  }
-
-  /* Icône flèche déroulante agrandie */
-  select {
-    appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%236b7280' viewBox='0 0 20 20'%3e%3cpath d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'/%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: left 16px center;
-    background-size: 20px;
-    padding-left: 48px;
-  }
-
-  button {
-    background: var(--accent);
-    color: white;
-    border: none;
-    padding: 16px;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 1.2rem;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 24px;
-    transition: 0.2s;
-  }
-
-  button:hover {
-    background: #2563eb;
-    transform: translateY(-1px);
-  }
-
-  #totalPrice {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #059669;
-    margin: 24px 0;
-    padding: 16px;
-    background: #ecfdf5;
-    border-radius: 12px;
-    border: 2px solid #a7f3d0;
-  }
-
-  #subCategory { display: none; margin-top: 12px; }
-</style>
+    :root {
+      --primary: hsl(217, 91%, 60%);
+      --secondary: hsl(142, 76%, 36%);
+      --background: hsl(210, 30%, 98%);
+      --foreground: hsl(215, 25%, 15%);
+      --muted: hsl(210, 40%, 96%);
+      --border: hsl(214, 32%, 91%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+    }
+    .container { max-width: 500px; margin: 0 auto; padding: 16px; }
+    .header {
+      background: linear-gradient(135deg, var(--primary), hsl(205, 100%, 65%));
+      color: white; text-align: center; padding: 20px; border-radius: 0 0 16px 16px;
+    }
+    .header h1 { font-size: 1.5rem; margin-bottom: 8px; }
+    .product-card { background: white; border-radius: 16px; box-shadow: var(--shadow-card, 0 4px 20px rgba(59,130,246,0.1)); padding: 20px; margin: 20px 0; text-align: center; }
+    .product-img { max-width: 280px; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 16px; }
+    .price { font-size: 1.8rem; font-weight: 800; color: var(--secondary); margin: 12px 0; }
+    .badge { background: rgba(16,185,129,0.15); color: var(--secondary); padding: 4px 12px; border-radius: 999px; font-weight: 600; margin-bottom: 12px; display: inline-block; }
+    .form-group { margin-bottom: 16px; }
+    label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.95rem; }
+    input, select {
+      width: 100%; padding: 14px; border: 2px solid var(--border); border-radius: 12px; font-size: 1rem; background: white;
+      transition: border 0.2s;
+    }
+    input:focus, select:focus { border-color: var(--primary); outline: none; }
+    .total-price {
+      background: #ecfdf5; padding: 16px; border-radius: 12px; font-weight: 700; text-align: center; margin: 20px 0;
+      border: 2px solid #a7f3d0; font-size: 1.3rem; color: #166534;
+    }
+    button {
+      width: 100%; background: linear-gradient(to right, var(--primary), #2563eb); color: white; padding: 16px;
+      border-radius: 12px; font-size: 1.2rem; font-weight: 700; border: none; cursor: pointer;
+      box-shadow: 0 6px 20px rgba(59,130,246,0.3); transition: 0.3s;
+    }
+    button:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(59,130,246,0.4); }
+    .footer { background: var(--foreground); color: white; padding: 32px 0; margin-top: 64px; text-align: center; }
+    .footer a {
+      background: var(--secondary); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none;
+      font-weight: 700; display: inline-flex; align-items: center; gap: 8px; transition: 0.2s;
+    }
+    .footer a:hover { background: #0d9f70; }
+    #subCategory { display: none; }
+    @keyframes pulse-soft { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .9; transform: scale(1.02); } }
+    .animate-pulse-soft { animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+  </style>
 </head>
 <body>
   <div class="container">
-    <img src="book.jpg" alt="كتاب البكالوريا" style="width:100%; border-radius:12px; margin-bottom:20px;"> <!-- Remplace par un lien vers ton image uploadée, ex: via Imgur -->
-    <h1>كتاب مواضيع وتصحيحات البكالوريا 2017-2023</h1>
-    <p>السعر الترويجي: 1500 دج فقط! اختر خياراتك واطلب الآن.</p>
-   <form name="commande-bac" netlify netlify-honeypot="_gotcha" data-netlify="true" method="POST">
-  <!-- Anti-bot invisible (honeypot) -->
-  <input type="hidden" name="_gotcha" style="display:none !important">
+    <div class="header">
+      <h1>مرحباً بكم في Bouda Copy Express</h1>
+      <p>كتب دراسية عالية الجودة بأسعار لا تُقاوم</p>
+    </div>
 
-  <!-- Tes champs existants -->
- <div class="form-group">
-  <label>الشعبة</label>
-  <select id="filiere" name="الشعبة" onchange="updateSubCategory()" required>
-    <option value="">اختر الشعبة</option>
-    <option value="sci">علوم تجريبية</option>
-    <option value="math">رياضيات</option>
-    <option value="tech">تقني رياضي</option> <!-- value="tech" -->
-    <option value="mgmt">تسيير واقتصاد</option>
-    <option value="lit">آداب وفلسفة</option>
-    <option value="lang">لغات أجنبية</option> <!-- value="lang" -->
-  </select>
-</div>
+    <div class="product-card">
+      <img class="product-img" src="book.jpg" alt="كتاب البكالوريا 2017-2023">
+      <div class="price">1500 دج فقط!</div>
+      <div class="badge">طبعة 2024 الجديدة مع التصحيح النموذجي</div>
+    </div>
 
-  <div class="form-group" id="subCategory" style="display:none;">
-    <label>التخصص</label>
-    <select name="التخصص" onchange="updatePrice()">
-      <option value="">اختر التخصص</option>
-    </select>
-  </div>
+    <form name="commande-bac" netlify netlify-honeypot="_gotcha" data-netlify="true" method="POST">
+      <input type="hidden" name="_gotcha" style="display:none !important">
 
-  <div class="form-group">
-    <label>نوع المواد</label>
-    <select id="option" name="نوع المواد" onchange="updatePrice()" required>
-      <option value="">اختر نوع المواد</option>
-      <option value="essential">المواد الأساسية</option>
-      <option value="secondary">المواد الثانوية</option>
-    </select>
-  </div>
+      <div class="form-group">
+        <label for="filiere">الشعبة *</label>
+        <select id="filiere" name="الشعبة" onchange="updateSubCategory()" required>
+          <option value="">اختر الشعبة</option>
+          <option value="علوم تجريبية">علوم تجريبية</option>
+          <option value="رياضيات">رياضيات</option>
+          <option value="تقني رياضي">تقني رياضي</option>
+          <option value="تسيير واقتصاد">تسيير واقتصاد</option>
+          <option value="آداب وفلسفة">آداب وفلسفة</option>
+          <option value="لغات أجنبية">لغات أجنبية</option>
+        </select>
+      </div>
 
-  <div class="form-group">
-    <label>الاسم الكامل</label>
-    <input type="text" name="الاسم" required>
-  </div>
+      <div class="form-group" id="subCategory">
+        <label for="subspecialization">التخصص</label>
+        <select id="subspecialization" name="التخصص" onchange="updatePrice()">
+          <option value="">اختر التخصص</option>
+        </select>
+      </div>
 
-  <div class="form-group">
-    <label>رقم الهاتف</label>
-    <input type="tel" name="رقم الهاتف" required>
-  </div>
+      <div class="form-group">
+        <label for="materialType">نوع المواد *</label>
+        <select id="materialType" name="نوع المواد" onchange="updatePrice()" required>
+          <option value="">اختر نوع المواد</option>
+          <option value="المواد الأساسية">المواد الأساسية</option>
+          <option value="المواد الثانوية">المواد الثانوية</option>
+        </select>
+      </div>
 
-  <div class="form-group">
-    <label>الولاية</label>
-    <select id="wilaya" name="الولاية" onchange="updatePrice()" required>
-      <option value="">اختر الولاية</option>
-      <option value="أدرار">أدرار</option>
-      <option value="الشلف">الشلف</option>
-      <option value="الأغواط">الأغواط</option>
-      <option value="أم البواقي">أم البواقي</option>
-      <option value="باتنة">باتنة</option>
-      <option value="بجاية">بجاية</option>
-      <option value="بسكرة">بسكرة</option>
-      <option value="بشار">بشار</option>
-      <option value="البليدة">البليدة</option>
-      <option value="البويرة">البويرة</option>
-      <option value="تمنراست">تمنراست</option>
-      <option value="تبسة">تبسة</option>
-      <option value="تلمسان">تلمسان</option>
-      <option value="تيارت">تيارت</option>
-      <option value="تيزي وزو">تيزي وزو</option>
-      <option value="الجزائر">الجزائر</option>
-      <option value="الجلفة">الجلفة</option>
-      <option value="جيجل">جيجل</option>
-      <option value="سطيف">سطيف</option>
-      <option value="سعيدة">سعيدة</option>
-      <option value="سكيكدة">سكيكدة</option>
-      <option value="سيدي بلعباس">سيدي بلعباس</option>
-      <option value="عنابة">عنابة</option>
-      <option value="قالمة">قالمة</option>
-      <option value="قسنطينة">قسنطينة</option>
-      <option value="المدية">المدية</option>
-      <option value="مستغانم">مستغانم</option>
-      <option value="المسيلة">المسيلة</option>
-      <option value="معسكر">معسكر</option>
-      <option value="ورقلة">ورقلة</option>
-      <option value="وهران">وهران</option>
-      <option value="البيض">البيض</option>
-      <option value="برج بوعريريج">برج بوعريريج</option>
-      <option value="بومرداس">بومرداس</option>
-      <option value="الطارف">الطارف</option>
-      <option value="تيسمسيلت">تيسمسيلت</option>
-      <option value="الوادي">الوادي</option>
-      <option value="خنشلة">خنشلة</option>
-      <option value="سوق أهراس">سوق أهراس</option>
-      <option value="تيبازة">تيبازة</option>
-      <option value="ميلة">ميلة</option>
-      <option value="عين الدفلى">عين الدفلى</option>
-      <option value="النعامة">النعامة</option>
-      <option value="عين تموشنت">عين تموشنت</option>
-      <option value="غرداية">غرداية</option>
-      <option value="غليزان">غليزان</option>
-      <option value="تيميمون">تيميمون</option>
-      <option value="أولاد جلال">أولاد جلال</option>
-      <option value="بني عباس">بني عباس</option>
-      <option value="عين صالح">عين صالح</option>
-      <option value="عين قزام">عين قزام</option>
-      <option value="توقرت">توقرت</option>
-      <option value="المغير">المغير</option>
-      <option value="المنيعة">المنيعة</option>
-    </select>
-  </div>
+      <div class="form-group">
+        <label for="fullName">الاسم الكامل *</label>
+        <input id="fullName" name="الاسم" type="text" required placeholder="أدخل اسمك الكامل">
+      </div>
 
-  <div class="form-group">
-    <label>البلدية (اختياري)</label>
-    <input type="text" name="البلدية">
-  </div>
+      <div class="form-group">
+        <label for="phone">رقم الهاتف *</label>
+        <input id="phone" name="رقم الهاتف" type="tel" required placeholder="0555123456">
+      </div>
 
-  <div class="form-group">
-    <label>نوع التوصيل</label>
-    <select id="delivery" name="نوع التوصيل" onchange="updatePrice()" required>
-      <option value="">اختر نوع التوصيل</option>
-      <option value="domicile">إلى المنزل</option>
-      <option value="bureau">إلى مكتب ZR Express</option>
-    </select>
-  </div>
+      <div class="form-group">
+        <label for="wilaya">الولاية *</label>
+        <select id="wilaya" name="الولاية" onchange="updatePrice()" required>
+          <option value="">اختر الولاية</option>
+          <option value="أدرار">أدرار</option>
+          <option value="الشلف">الشلف</option>
+          <option value="الأغواط">الأغواط</option>
+          <option value="أم البواقي">أم البواقي</option>
+          <option value="باتنة">باتنة</option>
+          <option value="بجاية">بجاية</option>
+          <option value="بسكرة">بسكرة</option>
+          <option value="بشار">بشار</option>
+          <option value="البليدة">البليدة</option>
+          <option value="البويرة">البويرة</option>
+          <option value="تمنراست">تمنراست</option>
+          <option value="تبسة">تبسة</option>
+          <option value="تلمسان">تلمسان</option>
+          <option value="تيارت">تيارت</option>
+          <option value="تيزي وزو">تيزي وزو</option>
+          <option value="الجزائر">الجزائر</option>
+          <option value="الجلفة">الجلفة</option>
+          <option value="جيجل">جيجل</option>
+          <option value="سطيف">سطيف</option>
+          <option value="سعيدة">سعيدة</option>
+          <option value="سكيكدة">سكيكدة</option>
+          <option value="سيدي بل3باس">سيدي بلعباس</option>
+          <option value="عنابة">عنابة</option>
+          <option value="قالمة">قالمة</option>
+          <option value="قسنطينة">قسنطينة</option>
+          <option value="المدية">المدية</option>
+          <option value="مستغانم">مستغانم</option>
+          <option value="المسيلة">المسيلة</option>
+          <option value="معسكر">معسكر</option>
+          <option value="ورقلة">ورقلة</option>
+          <option value="وهران">وهران</option>
+          <option value="البيض">البيض</option>
+          <option value="برج بوعريريج">برج بوعريريج</option>
+          <option value="بومرداس">بومرداس</option>
+          <option value="الطارف">الطارف</option>
+          <option value="تيسمسيلت">تيسمسيلت</option>
+          <option value="الوادي">الوادي</option>
+          <option value="خنشلة">خنشلة</option>
+          <option value="سوق أهراس">سوق أهراس</option>
+          <option value="تيبازة">تيبازة</option>
+          <option value="ميلة">ميلة</option>
+          <option value="عين الدفلى">عين الدفلى</option>
+          <option value="النعامة">النعامة</option>
+          <option value="عين تموشنت">عين تموشنت</option>
+          <option value="غرداية">غرداية</option>
+          <option value="غليزان">غليزان</option>
+          <option value="تيميمون">تيميمون</option>
+          <option value="أولاد جلال">أولاد جلال</option>
+          <option value="بني عباس">بني عباس</option>
+          <option value="توقرت">توقرت</option>
+          <option value="المغير">المغير</option>
+          <option value="المنيعة">المنيعة</option>
+        </select>
+      </div>
 
-  <div id="totalPrice" style="background:#ecfdf5;color:#166534;padding:16px;border-radius:12px;font-weight:700;text-align:center;margin:20px 0;border:2px solid #a7f3d0;">
-    المجموع الكلي: 1500 دج
-  </div>
+      <div class="form-group">
+        <label for="commune">البلدية (اختياري)</label>
+        <input id="commune" name="البلدية" type="text" placeholder="أدخل اسم البلدية">
+      </div>
 
-  <button type="submit" style="background:linear-gradient(to right,#3b82f6,#2563eb);color:white;padding:16px;border-radius:12px;font-size:1.2rem;font-weight:700;width:100%;border:none;cursor:pointer;box-shadow:0 6px 20px rgba(59,130,246,0.3);">
-    اطلب الآن
-  </button>
-</form>
+      <div class="form-group">
+        <label for="deliveryType">نوع التوصيل *</label>
+        <select id="deliveryType" name="نوع التوصيل" onchange="updatePrice()" required>
+          <option value="home">إلى المنزل</option>
+          <option value="office">إلى مكتب ZR Express</option>
+        </select>
+      </div>
+
+      <div class="total-price">
+        المجموع الكلي: <span id="totalPriceValue">1500</span> دج
+      </div>
+
+      <button type="submit" class="animate-pulse-soft">اطلب الآن</button>
+    </form>
+
+    <footer class="footer">
+      <p>© 2025 Bouda Copy Express - جميع الحقوق محفوظة</p>
+      <a href="https://wa.me/213555123456" target="_blank">تواصل معنا عبر واتساب</a>
+    </footer>
   </div>
 
   <script>
-    const deliveryPrices = {
-      'أدرار': { domicile: 1400, bureau: 970 },
-      'الشلف': { domicile: 850, bureau: 520 },
-      'الأغواط': { domicile: 950, bureau: 620 },
-      // Ajoute tous les prix de ton DOCX ici de la même manière
-      'أم البواقي': { domicile: 850, bureau: 520 },
-      'باتنة': { domicile: 900, bureau: 520 },
-      'بجاية': { domicile: 800, bureau: 520 },
-      'بسكرة': { domicile: 950, bureau: 620 },
-      'بشار': { domicile: 1100, bureau: 720 },
-      'البليدة': { domicile: 600, bureau: 470 },
-      'البويرة': { domicile: 700, bureau: 520 },
-      'تمنراست': { domicile: 1600, bureau: 1120 },
-      'تبسة': { domicile: 900, bureau: 570 },
-      'تلمسان': { domicile: 900, bureau: 570 },
-      'تيارت': { domicile: 850, bureau: 520 },
-      'تيزي وزو': { domicile: 750, bureau: 520 },
-      'الجزائر': { domicile: 500, bureau: 370 },
-      'الجلفة': { domicile: 950, bureau: 570 },
-      'جيجل': { domicile: 900, bureau: 520 },
-      'سطيف': { domicile: 800, bureau: 520 },
-      'سعيدة': { domicile: 900, bureau: 570 },
-      'سكيكدة': { domicile: 900, bureau: 520 },
-      'سيدي بلعباس': { domicile: 900, bureau: 520 },
-      'عنابة': { domicile: 850, bureau: 520 },
-      'قالمة': { domicile: 900, bureau: 520 },
-      'قسنطينة': { domicile: 800, bureau: 520 },
-      'المدية': { domicile: 800, bureau: 520 },
-      'مستغانم': { domicile: 900, bureau: 520 },
-      'المسيلة': { domicile: 850, bureau: 570 },
-      'معسكر': { domicile: 900, bureau: 520 },
-      'ورقلة': { domicile: 950, bureau: 670 },
-      'وهران': { domicile: 800, bureau: 520 },
-      'البيض': { domicile: 1100, bureau: 670 },
-      'إيليزي': { domicile: 0, bureau: 0 },
-      'برج بوعريريج': { domicile: 800, bureau: 520 },
-      'بومرداس': { domicile: 700, bureau: 520 },
-      'الطارف': { domicile: 850, bureau: 520 },
-      'تندوف': { domicile: 0, bureau: 0 },
-      'تيسمسيلت': { domicile: 900, bureau: 520 },
-      'الوادي': { domicile: 950, bureau: 670 },
-      'خنشلة': { domicile: 900, bureau: 0 },
-      'سوق أهراس': { domicile: 900, bureau: 520 },
-      'تيبازة': { domicile: 700, bureau: 520 },
-      'ميلة': { domicile: 900, bureau: 520 },
-      'عين الدفلى': { domicile: 900, bureau: 520 },
-      'النعامة': { domicile: 1100, bureau: 670 },
-      'عين تموشنت': { domicile: 900, bureau: 520 },
-      'غرداية': { domicile: 950, bureau: 620 },
-      'غليزان': { domicile: 900, bureau: 520 },
-      'تيميمون': { domicile: 1400, bureau: 0 },
-      'برج باجي مختار': { domicile: 0, bureau: 0 },
-      'أولاد جلال': { domicile: 950, bureau: 620 },
-      'بني عباس': { domicile: 1100, bureau: 970 },
-      'عين صالح': { domicile: 1600, bureau: 0 },
-      'عين قزام': { domicile: 1600, bureau: 0 },
-      'توقرت': { domicile: 950, bureau: 670 },
-      'جانت': { domicile: 0, bureau: 0 },
-      'المغير': { domicile: 950, bureau: 0 },
-      'المنيعة': { domicile: 1000, bureau: 0 }
+    const DELIVERY_PRICES = {
+      "أدرار": { home: 1400, office: 970 },
+      "الشلف": { home: 850, office: 520 },
+      "الأغواط": { home: 950, office: 620 },
+      "أم البواقي": { home: 850, office: 520 },
+      "باتنة": { home: 900, office: 520 },
+      "بجاية": { home: 800, office: 520 },
+      "بسكرة": { home: 950, office: 620 },
+      "بشار": { home: 1100, office: 720 },
+      "البليدة": { home: 600, office: 470 },
+      "البويرة": { home: 700, office: 520 },
+      "تمنراست": { home: 1600, office: 1120 },
+      "تبسة": { home: 900, office: 570 },
+      "تلمسان": { home: 900, office: 570 },
+      "تيارت": { home: 850, office: 520 },
+      "تيزي وزو": { home: 750, office: 520 },
+      "الجزائر": { home: 500, office: 370 },
+      "الجلفة": { home: 950, office: 570 },
+      "جيجل": { home: 900, office: 520 },
+      "سطيف": { home: 800, office: 520 },
+      "سعيدة": { home: 900, office: 570 },
+      "سكيكدة": { home: 900, office: 520 },
+      "سيدي بلعباس": { home: 900, office: 520 },
+      "عنابة": { home: 850, office: 520 },
+      "قالمة": { home: 900, office: 520 },
+      "قسنطينة": { home: 800, office: 520 },
+      "المدية": { home: 800, office: 520 },
+      "مستغانم": { home: 900, office: 520 },
+      "المسيلة": { home: 850, office: 570 },
+      "معسكر": { home: 900, office: 520 },
+      "ورقلة": { home: 950, office: 670 },
+      "وهران": { home: 800, office: 520 },
+      "البيض": { home: 1100, office: 670 },
+      "برج بوعريريج": { home: 800, office: 520 },
+      "بومرداس": { home: 700, office: 520 },
+      "الطارف": { home: 850, office: 520 },
+      "تيسمسيلت": { home: 900, office: 520 },
+      "الوادي": { home: 950, office: 670 },
+      "خنشلة": { home: 900, office: 520 },
+      "سوق أهراس": { home: 900, office: 520 },
+      "تيبازة": { home: 700, office: 520 },
+      "ميلة": { home: 900, office: 520 },
+      "عين الدفلى": { home: 900, office: 520 },
+      "النعامة": { home: 1100, office: 670 },
+      "عين تموشنت": { home: 900, office: 520 },
+      "غرداية": { home: 950, office: 620 },
+      "غليزان": { home: 900, office: 520 },
+      "تيميمون": { home: 1400, office: 970 },
+      "أولاد جلال": { home: 950, office: 620 },
+      "بني عباس": { home: 1100, office: 970 },
+      "توقرت": { home: 950, office: 670 },
+      "المغير": { home: 950, office: 670 },
+      "المنيعة": { home: 1000, office: 750 }
     };
 
-    const subCategories = {
-      'tech': ['هندسة ميكانيكية', 'هندسة مدنية', 'هندسة الطرائق', 'هندسة كهربائية'],
-      'lang': ['إسبانية', 'ألمانية', 'إيطالية']
+    const SPECIALIZATIONS = {
+      "علوم تجريبية": { hasSubcategories: false, subcategories: [] },
+      "رياضيات": { hasSubcategories: false, subcategories: [] },
+      "تسيير واقتصاد": { hasSubcategories: false, subcategories: [] },
+      "آداب وفلسفة": { hasSubcategories: false, subcategories: [] },
+      "تقني رياضي": { 
+        hasSubcategories: true, 
+        subcategories: ["هندسة ميكانيكية", "هندسة مدنية", "هندسة الطرائق", "هندسة كهربائية"] 
+      },
+      "لغات أجنبية": { 
+        hasSubcategories: true, 
+        subcategories: ["إسبانية", "ألمانية", "إيطالية"] 
+      }
     };
 
     function updateSubCategory() {
       const filiere = document.getElementById('filiere').value;
-      const subSelect = document.getElementById('subCategory');
+      const subSelect = document.getElementById('subspecialization');
+      const subGroup = document.getElementById('subCategory');
       subSelect.innerHTML = '<option value="">اختر التخصص</option>';
-      subSelect.style.display = 'none';
+      subGroup.style.display = 'none';
 
-      if (subCategories[filiere]) {
-        subSelect.style.display = 'block';
-        subCategories[filiere].forEach(sub => {
+      const spec = SPECIALIZATIONS[filiere];
+      if (spec && spec.hasSubcategories) {
+        subGroup.style.display = 'block';
+        spec.subcategories.forEach(sub => {
           subSelect.innerHTML += `<option value="${sub}">${sub}</option>`;
         });
       }
@@ -320,62 +293,36 @@
 
     function updatePrice() {
       const wilaya = document.getElementById('wilaya').value;
-      const delivery = document.getElementById('delivery').value;
-      const basePrice = 1500;
-      let shipping = 0;
-
-      if (wilaya && delivery && deliveryPrices[wilaya]) {
-        shipping = deliveryPrices[wilaya][delivery] || 0;
+      const deliveryType = document.getElementById('deliveryType').value;
+      let deliveryCost = 0;
+      if (wilaya && DELIVERY_PRICES[wilaya]) {
+        deliveryCost = deliveryType === 'home' ? DELIVERY_PRICES[wilaya].home : DELIVERY_PRICES[wilaya].office;
       }
-
-      const total = basePrice + shipping;
-      document.getElementById('totalPrice').innerText = `المجموع الكلي: ${total} دج`;
+      document.getElementById('totalPriceValue').innerText = 1500 + deliveryCost;
     }
-  </script>
-  <script>
-  // Soumission AJAX pour Netlify Forms (fix 404 + instantané)
-  document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form[name="commande-bac"]');
-    if (form) {
-      form.addEventListener('submit', function(e) {
-        e.preventDefault(); // Empêche la redirection par défaut (bye-bye 404)
 
-        const formData = new FormData(form);
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerText;
-        submitBtn.innerText = 'جاري الإرسال...'; // Loading
-        submitBtn.disabled = true;
+    // AJAX Submit
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const button = this.querySelector('button[type="submit"]');
+      const originalText = button.innerText;
+      button.disabled = true;
+      button.innerText = 'جاري الإرسال...';
 
-        fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(formData).toString()
-        })
-        .then(response => {
-          if (response.ok) {
-            // Succès : Affiche message + redirige vers merci.html (optionnel)
-            form.innerHTML = '<div style="text-align:center; padding:20px; background:#ecfdf5; color:#166534; border-radius:12px; font-size:1.2rem; margin:20px 0;"><h2>✅ تم استلام طلبك بنجاح!</h2><p>سنتصل بك خلال 24 ساعة لتأكيد الشحن. شكراً لثقتك في Bouda Copy Express!</p></div>';
-            // Optionnel : setTimeout(() => { window.location.href = '/merci.html'; }, 3000); // Redirige après 3s
-          } else {
-            alert('خطأ في الإرسال. يرجى المحاولة مرة أخرى.');
-          }
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          alert('خطأ في الإرسال. يرجى المحاولة مرة أخرى.');
-        })
-        .finally(() => {
-          submitBtn.innerText = originalText;
-          submitBtn.disabled = false;
-        });
+      fetch('/', {
+        method: 'POST',
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(new FormData(this)).toString()
+      })
+      .then(() => {
+        this.innerHTML = '<div style="background:#ecfdf5;color:#166534;padding:20px;border-radius:12px;text-align:center;font-size:1.2rem;"><h3>تم استلام طلبك بنجاح!</h3><p>سنتصل بك خلال 24 ساعة.</p></div>';
+      })
+      .catch(() => alert('خطأ في الإرسال'))
+      .finally(() => {
+        button.disabled = false;
+        button.innerText = originalText;
       });
-    }
-  });
-</script>
+    });
+  </script>
 </body>
-
 </html>
-
-
-
-
