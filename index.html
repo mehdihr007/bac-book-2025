@@ -73,6 +73,7 @@
     <div class="product-card">
       <img class="product-img" src="book.jpg" alt="كتاب البكالوريا 2017-2023">
       <div class="price">1500 دج فقط!</div>
+
       <div class="badge">طبعة 2024 الجديدة مع التصحيح النموذجي</div>
     </div>
 
@@ -302,27 +303,38 @@
     }
 
     // AJAX Submit
-    document.querySelector('form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const button = this.querySelector('button[type="submit"]');
-      const originalText = button.innerText;
-      button.disabled = true;
-      button.innerText = 'جاري الإرسال...';
+document.querySelector('form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const button = this.querySelector('button[type="submit"]');
+  const originalText = button.innerText;
+  button.disabled = true;
+  button.innerText = 'جاري الإرسال...';
 
-      fetch('/', {
-        method: 'POST',
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(new FormData(this)).toString()
-      })
-      .then(() => {
-        this.innerHTML = '<div style="background:#ecfdf5;color:#166534;padding:20px;border-radius:12px;text-align:center;font-size:1.2rem;"><h3>تم استلام طلبك بنجاح!</h3><p>سنتصل بك خلال 24 ساعة.</p></div>';
-      })
-      .catch(() => alert('خطأ في الإرسال'))
-      .finally(() => {
-        button.disabled = false;
-        button.innerText = originalText;
-      });
-    });
+  const formData = new FormData(this);
+  const encoded = new URLSearchParams(formData).toString();
+
+  fetch('/', {
+    method: 'POST',
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: encoded
+  })
+  .then(response => {
+    if (response.ok) {
+      window.location.href = '/merci.html'; // Redirige vers merci.html
+    } else {
+      throw new Error('Erreur Netlify: ' + response.status);
+    }
+  })
+  .catch(err => {
+    console.error(err); // Log l'erreur dans la console (F12)
+    alert('خطأ في الإرسال: ' + err.message);
+  })
+  .finally(() => {
+    button.disabled = false;
+    button.innerText = originalText;
+  });
+});
   </script>
 </body>
 </html>
+
