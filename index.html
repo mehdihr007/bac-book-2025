@@ -495,24 +495,26 @@
     }
 
     function updateBureaux() {
-      const wilaya = document.getElementById('wilaya').value;
-      const deliveryType = document.getElementById('deliveryType').value;
-      const bureauGroup = document.getElementById('bureauGroup');
-      const bureauSelect = document.getElementById('bureau');
+  const wilaya = document.getElementById('wilaya').value;
+  const deliveryType = document.getElementById('deliveryType').value;
+  const bureauGroup = document.getElementById('bureauGroup');
+  const bureauSelect = document.getElementById('bureau');
 
-      if (deliveryType === 'office' && wilaya) {
-        bureauGroup.style.display = 'block';
-        bureauSelect.innerHTML = '<option value="">اختر المكتب</option>';
-        const bureaux = ZR_BUREAUX[wilaya] || ['مكتب ZR Express الرئيسي في ' + wilaya];
-        bureaux.forEach(bureau => {
-          bureauSelect.innerHTML += `<option value="${bureau}">${bureau}</option>`;
-        });
-      } else {
-        bureauGroup.style.display = 'none';
-        bureauSelect.value = '';
-      }
-      updatePrice();
-    }
+  if (deliveryType === 'office' && wilaya) {
+    bureauGroup.style.display = 'block';
+    bureauSelect.innerHTML = '<option value="">اختر المكتب</option>';
+    const bureaux = ZR_BUREAUX[wilaya] || ['مكتب ZR Express الرئيسي في ' + wilaya];
+    bureaux.forEach(bureau => {
+      bureauSelect.innerHTML += `<option value="${bureau}">${bureau}</option>`;
+    });
+    bureauSelect.setAttribute('required', 'required');
+  } else {
+    bureauGroup.style.display = 'none';
+    bureauSelect.value = '';
+    bureauSelect.removeAttribute('required'); // Critical fix
+  }
+  updatePrice();
+}
 
     function validateBaladia() {
       const baladia = document.getElementById('commune').value.trim();
@@ -577,5 +579,6 @@
   </script>
 </body>
 </html>
+
 
 
